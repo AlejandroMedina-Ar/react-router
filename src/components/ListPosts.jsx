@@ -1,20 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import "../assets/css/componentes/card.css"
-import { buscar } from "../api/api.js"
-import { Link } from "react-router-dom";
-
+import { buscar } from "../api/api"
+import { Link } from "react-router-dom"
 
 const ListPosts = ({ url }) => {
-    const [posts, setPost] = useState([])
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        buscar(url, setPost)
-       
+        buscar(url, setPosts)
     }, [url])
 
     return (
         <section className="posts container">
-              {
+            {
                 posts.map(post => {
                     const { id, title, metadescription, categoria } = post;
                     return <Link to={`/posts/${id}`} className={`post__card post-card--${categoria}`} key={id}>
@@ -27,11 +25,8 @@ const ListPosts = ({ url }) => {
                     </Link>
                 })
             }
-
         </section>
-
-    );
-
+    )
 }
 
 export default ListPosts
